@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Treino PULL</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec13",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102210",
+              "surface-dark": "#182c18", 
+              "surface-light": "#eef2ee",
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar hiding for cleaner UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased selection:bg-primary selection:text-black">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden pb-24">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-gray-200 dark:border-white/10 px-4 py-3">
+<div class="flex items-center justify-between">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 24px;">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<h1 class="text-lg font-bold leading-tight tracking-tight">Treino PULL</h1>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+<p class="text-xs font-medium text-slate-500 dark:text-gray-400">Costas &amp; Bíceps • 00:45:12</p>
+</div>
+</div>
+<button class="flex h-9 px-3 items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+<span class="text-sm font-bold">Finalizar</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex flex-col gap-6 p-4">
+<!-- Global Action -->
+<button class="group relative w-full overflow-hidden rounded-xl bg-surface-dark border border-white/5 p-4 shadow-lg active:scale-[0.98] transition-all duration-200">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+<div class="relative flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-primary">content_copy</span>
+<span class="text-sm font-bold text-white">Copiar último treino</span>
+</div>
+</button>
+<!-- Exercise 1: Barra Fixa -->
+<div class="flex flex-col gap-4 rounded-xl bg-surface-dark border border-white/5 p-4 shadow-md">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="size-16 rounded-lg bg-center bg-cover bg-no-repeat bg-gray-800" data-alt="Close up of pull up bar handles" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDacu7pK-y1HVN5jsTIDlGby8kVZ6VphpctBv1aUkzrabVhCjJZA7tT7AAZcQ_m6AjdkPVIXYiuxEvwygs0d6QyNVCL5niIRWkmIPJMUXMqsk6TOPWpzu_1_DlMgsnu2G7p2THnkkjnTZBOPUWFO93EBqBJfz2y8M-1AkRV9Lw65CIi_6MRAfhl5pvRLeK5hEVUYrNsewyggCixpKpOiQ8jO3-cHmtT2gANXS6VjbVUsJ0slQy0LssYOFIXHecnir1_fX0-pjWl_dH2');"></div>
+<div>
+<h3 class="text-lg font-bold text-white">Barra Fixa</h3>
+<p class="text-sm text-gray-400">Costas • 4 séries</p>
+</div>
+</div>
+<button class="text-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+<!-- Labels Row -->
+<div class="grid grid-cols-[32px_1fr_1fr_40px] gap-3 px-1">
+<span class="text-center text-xs font-bold text-gray-500 uppercase">Set</span>
+<span class="text-center text-xs font-bold text-gray-500 uppercase">Kg</span>
+<span class="text-center text-xs font-bold text-gray-500 uppercase">Reps</span>
+<span class="text-center text-xs font-bold text-gray-500 uppercase"></span>
+</div>
+<!-- Input Rows -->
+<div class="flex flex-col gap-3">
+<!-- Set 1 (Completed) -->
+<div class="grid grid-cols-[32px_1fr_1fr_40px] gap-3 items-center">
+<div class="flex h-8 items-center justify-center rounded bg-white/5 text-sm font-bold text-gray-400">1</div>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-white/10 focus:ring-primary focus:bg-background-dark/80" placeholder="-" type="number" value="0"/>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-white/10 focus:ring-primary focus:bg-background-dark/80" placeholder="-" type="number" value="12"/>
+<button class="flex size-10 items-center justify-center rounded-lg bg-primary text-background-dark shadow-[0_0_10px_rgba(19,236,19,0.4)] transition-all">
+<span class="material-symbols-outlined font-bold">check</span>
+</button>
+</div>
+<!-- Set 2 (Active) -->
+<div class="grid grid-cols-[32px_1fr_1fr_40px] gap-3 items-center">
+<div class="flex h-8 items-center justify-center rounded bg-primary/20 text-sm font-bold text-primary">2</div>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-primary focus:ring-primary focus:bg-background-dark/80" placeholder="-" type="number" value="5"/>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-primary focus:ring-primary focus:bg-background-dark/80" placeholder="10" type="number"/>
+<button class="flex size-10 items-center justify-center rounded-lg bg-white/10 text-gray-400 hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined">check</span>
+</button>
+</div>
+<!-- Set 3 -->
+<div class="grid grid-cols-[32px_1fr_1fr_40px] gap-3 items-center opacity-60 hover:opacity-100 transition-opacity">
+<div class="flex h-8 items-center justify-center rounded bg-white/5 text-sm font-bold text-gray-400">3</div>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-white/10 focus:ring-primary" placeholder="-" type="number"/>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-white/10 focus:ring-primary" placeholder="-" type="number"/>
+<button class="flex size-10 items-center justify-center rounded-lg bg-white/5 text-gray-500 hover:bg-white/10 transition-all">
+<span class="material-symbols-outlined">check</span>
+</button>
+</div>
+</div>
+<button class="mt-2 flex w-full items-center justify-center rounded-lg py-2 text-sm font-medium text-primary hover:bg-primary/5 transition-colors">
+                    + Adicionar série
+                </button>
+</div>
+<!-- Exercise 2: Puxada Frontal -->
+<div class="flex flex-col gap-4 rounded-xl bg-surface-dark border border-white/5 p-4 shadow-md">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="size-16 rounded-lg bg-center bg-cover bg-no-repeat bg-gray-800" data-alt="Gym cable machine weights" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDT-jUvreZfXTVqIBZYD0yGdPoPQWGsuN48p2KjNIMdUauU0HExSMbQvK5YsZo4QbOTyUR2uV5WsHOY7n-tqueHu4Yhv5QjzQM4gx4Pxmamzo5M9ZHAeEUKpV-ZzyiPyxprvLNjFfWGjHLo7x6oAMpX5QEspQMcrU2d5maaAJSEnLzwQUOk0SWDv0eBbVWbIpL_MP_CkEDsc46a-33DTyLpztOa29vdUrzTnZnrHZQ69xqgN9J6RjJhfi7yl5v3DVM2HLr_ijSorT9z');"></div>
+<div>
+<h3 class="text-lg font-bold text-white">Puxada Frontal</h3>
+<p class="text-sm text-gray-400">Costas • 4 séries</p>
+</div>
+</div>
+<button class="text-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Set 1 -->
+<div class="grid grid-cols-[32px_1fr_1fr_40px] gap-3 items-center">
+<div class="flex h-8 items-center justify-center rounded bg-white/5 text-sm font-bold text-gray-400">1</div>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-white/10 focus:ring-primary" placeholder="-" type="number" value="45"/>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-white/10 focus:ring-primary" placeholder="-" type="number" value="12"/>
+<button class="flex size-10 items-center justify-center rounded-lg bg-white/10 text-gray-400 hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined">check</span>
+</button>
+</div>
+<!-- Set 2 -->
+<div class="grid grid-cols-[32px_1fr_1fr_40px] gap-3 items-center">
+<div class="flex h-8 items-center justify-center rounded bg-white/5 text-sm font-bold text-gray-400">2</div>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-white/10 focus:ring-primary" placeholder="-" type="number" value="45"/>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-white/10 focus:ring-primary" placeholder="-" type="number" value="12"/>
+<button class="flex size-10 items-center justify-center rounded-lg bg-white/10 text-gray-400 hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined">check</span>
+</button>
+</div>
+</div>
+<button class="mt-2 flex w-full items-center justify-center rounded-lg py-2 text-sm font-medium text-primary hover:bg-primary/5 transition-colors">
+                    + Adicionar série
+                </button>
+</div>
+<!-- Exercise 3: Remada Curvada -->
+<div class="flex flex-col gap-4 rounded-xl bg-surface-dark border border-white/5 p-4 shadow-md">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="flex size-16 items-center justify-center rounded-lg bg-white/5 text-gray-500">
+<!-- Fallback icon if image doesn't load/exist -->
+<span class="material-symbols-outlined text-3xl">fitness_center</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white">Remada Curvada</h3>
+<p class="text-sm text-gray-400">Costas • 3 séries</p>
+</div>
+</div>
+<button class="text-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+<!-- Quick placeholder for sets -->
+<div class="flex flex-col gap-3 opacity-60">
+<div class="grid grid-cols-[32px_1fr_1fr_40px] gap-3 items-center">
+<div class="flex h-8 items-center justify-center rounded bg-white/5 text-sm font-bold text-gray-400">1</div>
+<div class="h-10 w-full rounded-lg bg-background-dark border border-white/5"></div>
+<div class="h-10 w-full rounded-lg bg-background-dark border border-white/5"></div>
+<div class="size-10 rounded-lg bg-white/5"></div>
+</div>
+</div>
+<button class="mt-2 flex w-full items-center justify-center rounded-lg py-2 text-sm font-medium text-primary hover:bg-primary/5 transition-colors">
+                    + Adicionar série
+                </button>
+</div>
+<!-- Exercise 4: Rosca Direta (Biceps Focus) -->
+<div class="flex flex-col gap-4 rounded-xl bg-surface-dark border border-white/5 p-4 shadow-md">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="size-16 rounded-lg bg-center bg-cover bg-no-repeat bg-gray-800" data-alt="Dumbbells on gym floor" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBG3sRyJJOLx4w5TyvUT3CD4SLHgdSrEIWIISWoGi6V5lRKXweIxmawX_V25X6BRFXQzRxobMNTmEUmTWFAioRCzuv24lpi_LbJijQaaZwQUXgJj2hqd1s5hayXsN2HEX6LElA4DH6AKUJmkGM-hx-b86mnKYVTNRD1kLlEF03OjqsjIgpc-xxsHQ4YRmcTDMJMQrMO_6g2G0jxfbsvq6UIKGYTVtfFgW0-uL_TYWbJmy7ROyCnjnlegVB2q_1wjBASDLCqgJClRYYb');"></div>
+<div>
+<h3 class="text-lg font-bold text-white">Rosca Direta</h3>
+<p class="text-sm text-gray-400">Bíceps • 3 séries</p>
+</div>
+</div>
+<button class="text-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Set 1 -->
+<div class="grid grid-cols-[32px_1fr_1fr_40px] gap-3 items-center">
+<div class="flex h-8 items-center justify-center rounded bg-white/5 text-sm font-bold text-gray-400">1</div>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-white/10 focus:ring-primary placeholder:font-normal placeholder:text-gray-600" placeholder="kg" type="number"/>
+<input class="h-10 w-full rounded-lg border-0 bg-background-dark text-center text-white font-bold ring-1 ring-white/10 focus:ring-primary placeholder:font-normal placeholder:text-gray-600" placeholder="reps" type="number"/>
+<button class="flex size-10 items-center justify-center rounded-lg bg-white/10 text-gray-400 hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined">check</span>
+</button>
+</div>
+</div>
+<button class="mt-2 flex w-full items-center justify-center rounded-lg py-2 text-sm font-medium text-primary hover:bg-primary/5 transition-colors">
+                    + Adicionar série
+                </button>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex h-20 items-start justify-around border-t border-white/5 bg-background-dark/95 backdrop-blur-md pt-4">
+<button class="group flex flex-col items-center gap-1 text-gray-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl group-hover:-translate-y-0.5 transition-transform">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="group flex flex-col items-center gap-1 text-primary">
+<div class="flex size-10 -translate-y-4 items-center justify-center rounded-full bg-primary text-background-dark shadow-[0_0_15px_rgba(19,236,19,0.5)]">
+<span class="material-symbols-outlined text-2xl font-bold">fitness_center</span>
+</div>
+<span class="text-[10px] font-bold">Treinar</span>
+</button>
+<button class="group flex flex-col items-center gap-1 text-gray-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl group-hover:-translate-y-0.5 transition-transform">person</span>
+<span class="text-[10px] font-medium">Perfil</span>
+</button>
+</nav>
+</div>
+</body></html>

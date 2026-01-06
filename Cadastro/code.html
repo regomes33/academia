@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PPL Pro - Login</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102210; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a402a; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b543b; 
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-[#111418] dark:text-white">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Main Content Wrapper -->
+<div class="flex flex-1 flex-col justify-center items-center px-4 py-6 md:px-6">
+<div class="w-full max-w-[480px] flex flex-col gap-6">
+<!-- Header / Logo Area -->
+<div class="flex flex-col items-center gap-2 pt-8">
+<div class="h-12 w-12 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-2">
+<span class="material-symbols-outlined" style="font-size: 32px;">fitness_center</span>
+</div>
+<h1 class="text-3xl font-bold tracking-tight text-center text-[#111418] dark:text-white">PPL PRO</h1>
+</div>
+<!-- Hero Image -->
+<div class="w-full overflow-hidden rounded-xl h-48 relative shadow-lg">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent z-10"></div>
+<div class="w-full h-full bg-center bg-cover" data-alt="Dark moody gym interior with dumbbells and weight bench" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBhWdm8IbTLY2LMdvGkRao7-a8XtFvPmJH6GHlk2uisZagDNVOT8DMtLuVWhExIKdYMfE9ae0kmZZEa_TT8dIFzrUBOK8LK6aV16D2QftfqxtlJp7e3tvzItBMlylv79Q1j7vDwZOxcNrCiN5iSY31xqy-UIXxq8cQlldW3N6L8_MtPohnzwIaaxLMwavyg_-o1c2qP1ZIoAORP7oaxGcHsiCpFjqzb6WYF0309XEPkLBDhk3Hg6sFuHngjd8jQtIox04-FuywL9r6L");'>
+</div>
+<div class="absolute bottom-4 left-4 z-20">
+<h2 class="text-white text-xl font-bold">Bem-vindo de volta</h2>
+<p class="text-gray-300 text-sm">Pronto para o treino de hoje?</p>
+</div>
+</div>
+<!-- Login Form -->
+<form class="flex flex-col gap-4 mt-2" onsubmit="event.preventDefault();">
+<!-- Email Field -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-[#111418] dark:text-gray-200" for="email">E-mail</label>
+<div class="relative">
+<input class="w-full rounded-xl border border-gray-300 dark:border-[#2a402a] bg-white dark:bg-[#162e16] p-4 text-base text-[#111418] dark:text-white placeholder:text-gray-400 dark:placeholder:text-[#9db99d] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" id="email" placeholder="exemplo@email.com" type="email"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-[#9db99d]">
+<span class="material-symbols-outlined">mail</span>
+</div>
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<label class="text-sm font-medium text-[#111418] dark:text-gray-200" for="password">Senha</label>
+<a class="text-sm font-medium text-primary hover:text-primary/80 transition-colors" href="#">Esqueceu a senha?</a>
+</div>
+<div class="relative">
+<input class="w-full rounded-xl border border-gray-300 dark:border-[#2a402a] bg-white dark:bg-[#162e16] p-4 pr-12 text-base text-[#111418] dark:text-white placeholder:text-gray-400 dark:placeholder:text-[#9db99d] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" id="password" placeholder="Digite sua senha" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-[#9db99d] hover:text-primary transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Login Button -->
+<button class="mt-4 w-full rounded-xl bg-primary py-4 text-base font-bold text-[#102210] shadow-md hover:bg-[#0fd60f] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span>ENTRAR</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</form>
+<!-- Social Login (Divider) -->
+<div class="relative flex py-2 items-center">
+<div class="flex-grow border-t border-gray-300 dark:border-[#2a402a]"></div>
+<span class="flex-shrink-0 mx-4 text-sm text-gray-500 dark:text-gray-400">Ou continue com</span>
+<div class="flex-grow border-t border-gray-300 dark:border-[#2a402a]"></div>
+</div>
+<!-- Social Buttons -->
+<div class="flex gap-4 justify-center">
+<button class="flex-1 flex items-center justify-center gap-2 rounded-xl border border-gray-300 dark:border-[#2a402a] bg-white dark:bg-[#162e16] p-3 hover:bg-gray-50 dark:hover:bg-[#1f3f1f] transition-colors group">
+<!-- Apple Logo SVG placeholder -->
+<span class="material-symbols-outlined dark:text-white group-hover:scale-110 transition-transform">ios</span>
+<span class="text-sm font-medium dark:text-white">Apple</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 rounded-xl border border-gray-300 dark:border-[#2a402a] bg-white dark:bg-[#162e16] p-3 hover:bg-gray-50 dark:hover:bg-[#1f3f1f] transition-colors group">
+<!-- Google Logo SVG placeholder using generic icon for simplicity -->
+<span class="material-symbols-outlined dark:text-white group-hover:scale-110 transition-transform">language</span>
+<span class="text-sm font-medium dark:text-white">Google</span>
+</button>
+</div>
+<!-- Sign Up Link -->
+<div class="mt-4 text-center">
+<p class="text-sm text-gray-600 dark:text-gray-400">
+                        Não tem uma conta? 
+                        <a class="font-bold text-primary hover:underline ml-1" href="#">Criar conta</a>
+</p>
+</div>
+</div>
+</div>
+<!-- Bottom Spacer for mobile aesthetics -->
+<div class="h-6 w-full"></div>
+</div>
+</body></html>
