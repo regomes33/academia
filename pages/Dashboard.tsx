@@ -17,22 +17,22 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartWorkout, onSelectPlan }) =
     const selectedPlan = settings.selectedPlanId ? getPlanById(settings.selectedPlanId) : null;
 
     // Get next workout day type
-    const getNextWorkoutDay = (): DayType => {
+    const getNextWorkoutDay = React.useMemo((): DayType => {
         if (!selectedPlan) return 'push';
         const dayOfWeek = new Date().getDay();
         const adjustedDay = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
         return selectedPlan.schedule[adjustedDay] || 'push';
-    };
+    }, [selectedPlan]);
 
-    const nextWorkoutDay = getNextWorkoutDay();
+    const nextWorkoutDay = getNextWorkoutDay;
     const isRestDay = nextWorkoutDay === 'rest';
 
     return (
-        <div className="flex flex-col gap-6 pb-24">
+        <div className="flex flex-col gap-6 pb-24 stagger-children">
             {/* Welcome Section */}
             <section className="space-y-1">
-                <p className="text-gray-400 text-sm">Bem-vindo de volta</p>
-                <h1 className="text-2xl font-bold text-white">
+                <p className="text-text-secondary text-sm">Bem-vindo de volta</p>
+                <h1 className="text-3xl font-bold text-white">
                     {settings.userName || 'Atleta'} 💪
                 </h1>
             </section>
@@ -41,30 +41,32 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartWorkout, onSelectPlan }) =
             {!selectedPlan ? (
                 <button
                     onClick={onSelectPlan}
-                    className="flex items-center justify-between p-4 bg-surface-dark rounded-xl border border-primary/30 hover:border-primary/50 transition-colors"
+                    className="flex items-center justify-between p-4 bg-surface-dark rounded-sm border border-primary/30 hover:border-primary/50 transition-all duration-250 hover-scale"
+                    aria-label="Escolher plano de treino"
                 >
                     <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-sm bg-primary/20 flex items-center justify-center">
                             <Dumbbell className="w-6 h-6 text-primary" />
                         </div>
                         <div className="text-left">
                             <p className="text-white font-semibold">Escolha seu plano</p>
-                            <p className="text-gray-400 text-sm">Selecione uma rotina PPL</p>
+                            <p className="text-text-secondary text-sm">Selecione uma rotina PPL</p>
                         </div>
                     </div>
-                    <ChevronRight className="w-5 h-5 text-gray-400" />
+                    <ChevronRight className="w-5 h-5 text-text-secondary" />
                 </button>
             ) : (
-                <div className="p-4 bg-surface-dark rounded-xl border border-white/5">
+                <div className="p-4 bg-surface-dark rounded-sm border border-white/5">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-gray-400 text-xs uppercase tracking-wider">Plano Atual</p>
+                            <p className="text-text-secondary text-xs uppercase tracking-wider">Plano Atual</p>
                             <p className="text-white font-semibold mt-1">{selectedPlan.title}</p>
-                            <p className="text-gray-400 text-sm">{selectedPlan.daysPerWeek} dias/semana</p>
+                            <p className="text-text-secondary text-sm">{selectedPlan.daysPerWeek} dias/semana</p>
                         </div>
                         <button
                             onClick={onSelectPlan}
                             className="text-primary text-sm font-medium hover:underline"
+                            aria-label="Alterar plano de treino"
                         >
                             Alterar
                         </button>
@@ -77,19 +79,21 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartWorkout, onSelectPlan }) =
             <section className="space-y-3">
                 <h2 className="text-lg font-semibold text-white">Escolha seu Treino</h2>
                 <div className="grid grid-cols-1 gap-3">
-                    {/* Push Button */}
+                    {/* Push Button - RED accent following plan */}
                     <button
                         onClick={() => onStartWorkout('push')}
                         disabled={!!currentSession}
-                        className={`relative overflow-hidden p-6 rounded-2xl transition-all duration-300 ${currentSession
+                        className={`relative overflow-hidden p-6 rounded-sm transition-all duration-250 hover-scale ${currentSession
                             ? 'bg-gray-800 cursor-not-allowed'
-                            : 'bg-gradient-to-r from-red-600/80 to-red-500/80 hover:from-red-600 hover:to-red-500 shadow-lg shadow-red-500/25 active:scale-[0.98]'
+                            : 'bg-accent-red hover:shadow-glow-red active:scale-95'
                             }`}
+                        aria-label="Iniciar treino Push: Peito, Ombros, Tríceps"
+                        aria-disabled={!!currentSession}
                     >
                         <div className="flex items-center justify-between">
                             <div className="text-left">
                                 <div className="flex items-center gap-2 mb-1">
-                                    <span className="px-2 py-0.5 rounded text-xs font-bold bg-red-500/20 text-red-300">
+                                    <span className="px-2 py-0.5 rounded-sm text-xs font-bold bg-white/20 text-white">
                                         PUSH
                                     </span>
                                 </div>
@@ -97,26 +101,28 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartWorkout, onSelectPlan }) =
                                     Peito, Ombros, Tríceps
                                 </p>
                             </div>
-                            <div className={`w-14 h-14 rounded-full flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-white/20'
+                            <div className={`w-14 h-14 rounded-sm flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-white/20'
                                 }`}>
                                 <Play className={`w-7 h-7 ${currentSession ? 'text-gray-500' : 'text-white'}`} fill="currentColor" />
                             </div>
                         </div>
                     </button>
 
-                    {/* Pull Button */}
+                    {/* Pull Button - BLUE accent */}
                     <button
                         onClick={() => onStartWorkout('pull')}
                         disabled={!!currentSession}
-                        className={`relative overflow-hidden p-6 rounded-2xl transition-all duration-300 ${currentSession
+                        className={`relative overflow-hidden p-6 rounded-sm transition-all duration-250 hover-scale ${currentSession
                             ? 'bg-gray-800 cursor-not-allowed'
-                            : 'bg-gradient-to-r from-blue-600/80 to-blue-500/80 hover:from-blue-600 hover:to-blue-500 shadow-lg shadow-blue-500/25 active:scale-[0.98]'
+                            : 'bg-accent-blue hover:shadow-glow-blue active:scale-95'
                             }`}
+                        aria-label="Iniciar treino Pull: Costas, Bíceps"
+                        aria-disabled={!!currentSession}
                     >
                         <div className="flex items-center justify-between">
                             <div className="text-left">
                                 <div className="flex items-center gap-2 mb-1">
-                                    <span className="px-2 py-0.5 rounded text-xs font-bold bg-blue-500/20 text-blue-300">
+                                    <span className="px-2 py-0.5 rounded-sm text-xs font-bold bg-white/20 text-white">
                                         PULL
                                     </span>
                                 </div>
@@ -124,80 +130,86 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartWorkout, onSelectPlan }) =
                                     Costas, Bíceps
                                 </p>
                             </div>
-                            <div className={`w-14 h-14 rounded-full flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-white/20'
+                            <div className={`w-14 h-14 rounded-sm flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-white/20'
                                 }`}>
                                 <Play className={`w-7 h-7 ${currentSession ? 'text-gray-500' : 'text-white'}`} fill="currentColor" />
                             </div>
                         </div>
                     </button>
 
-                    {/* Legs Button */}
+                    {/* Legs Button - PRIMARY green */}
                     <button
                         onClick={() => onStartWorkout('legs')}
                         disabled={!!currentSession}
-                        className={`relative overflow-hidden p-6 rounded-2xl transition-all duration-300 ${currentSession
+                        className={`relative overflow-hidden p-6 rounded-sm transition-all duration-250 hover-scale ${currentSession
                             ? 'bg-gray-800 cursor-not-allowed'
-                            : 'bg-gradient-to-r from-green-600/80 to-green-500/80 hover:from-green-600 hover:to-green-500 shadow-lg shadow-green-500/25 active:scale-[0.98]'
+                            : 'bg-primary hover:shadow-glow-primary active:scale-95'
                             }`}
+                        aria-label="Iniciar treino Legs: Pernas"
+                        aria-disabled={!!currentSession}
                     >
                         <div className="flex items-center justify-between">
                             <div className="text-left">
                                 <div className="flex items-center gap-2 mb-1">
-                                    <span className="px-2 py-0.5 rounded text-xs font-bold bg-green-500/20 text-green-300">
+                                    <span className="px-2 py-0.5 rounded-sm text-xs font-bold bg-black/20 text-black">
                                         LEGS
                                     </span>
                                 </div>
-                                <p className={`text-lg font-bold ${currentSession ? 'text-gray-400' : 'text-white'}`}>
+                                <p className={`text-lg font-bold ${currentSession ? 'text-gray-400' : 'text-black'}`}>
                                     Pernas
                                 </p>
                             </div>
-                            <div className={`w-14 h-14 rounded-full flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-white/20'
+                            <div className={`w-14 h-14 rounded-sm flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-black/20'
                                 }`}>
-                                <Play className={`w-7 h-7 ${currentSession ? 'text-gray-500' : 'text-white'}`} fill="currentColor" />
+                                <Play className={`w-7 h-7 ${currentSession ? 'text-gray-500' : 'text-black'}`} fill="currentColor" />
                             </div>
                         </div>
                     </button>
 
-                    {/* Upper Body Button */}
+                    {/* Upper Body Button - Changed from PURPLE to GREEN-BLUE gradient */}
                     <button
                         onClick={() => onStartWorkout('upper')}
                         disabled={!!currentSession}
-                        className={`relative overflow-hidden p-6 rounded-2xl transition-all duration-300 ${currentSession
+                        className={`relative overflow-hidden p-6 rounded-sm transition-all duration-250 hover-scale ${currentSession
                                 ? 'bg-gray-800 cursor-not-allowed'
-                                : 'bg-gradient-to-r from-purple-600/80 to-purple-500/80 hover:from-purple-600 hover:to-purple-500 shadow-lg shadow-purple-500/25 active:scale-[0.98]'
+                                : 'bg-gradient-to-r from-primary to-accent-blue hover:shadow-glow-primary active:scale-95'
                             }`}
+                        aria-label="Iniciar treino Upper: Superiores Completo"
+                        aria-disabled={!!currentSession}
                     >
                         <div className="flex items-center justify-between">
                             <div className="text-left">
                                 <div className="flex items-center gap-2 mb-1">
-                                    <span className="px-2 py-0.5 rounded text-xs font-bold bg-purple-500/20 text-purple-300">
+                                    <span className="px-2 py-0.5 rounded-sm text-xs font-bold bg-black/20 text-black">
                                         UPPER
                                     </span>
                                 </div>
-                                <p className={`text-lg font-bold ${currentSession ? 'text-gray-400' : 'text-white'}`}>
+                                <p className={`text-lg font-bold ${currentSession ? 'text-gray-400' : 'text-black'}`}>
                                     Superiores Completo
                                 </p>
                             </div>
-                            <div className={`w-14 h-14 rounded-full flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-white/20'
+                            <div className={`w-14 h-14 rounded-sm flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-black/20'
                                 }`}>
-                                <Play className={`w-7 h-7 ${currentSession ? 'text-gray-500' : 'text-white'}`} fill="currentColor" />
+                                <Play className={`w-7 h-7 ${currentSession ? 'text-gray-500' : 'text-black'}`} fill="currentColor" />
                             </div>
                         </div>
                     </button>
 
-                    {/* Lower Body Button */}
+                    {/* Lower Body Button - ORANGE accent */}
                     <button
                         onClick={() => onStartWorkout('lower')}
                         disabled={!!currentSession}
-                        className={`relative overflow-hidden p-6 rounded-2xl transition-all duration-300 ${currentSession
+                        className={`relative overflow-hidden p-6 rounded-sm transition-all duration-250 hover-scale ${currentSession
                                 ? 'bg-gray-800 cursor-not-allowed'
-                                : 'bg-gradient-to-r from-orange-600/80 to-orange-500/80 hover:from-orange-600 hover:to-orange-500 shadow-lg shadow-orange-500/25 active:scale-[0.98]'
+                                : 'bg-accent-orange hover:shadow-lg active:scale-95'
                             }`}
+                        aria-label="Iniciar treino Lower: Posteriores de Perna"
+                        aria-disabled={!!currentSession}
                     >
                         <div className="flex items-center justify-between">
                             <div className="text-left">
                                 <div className="flex items-center gap-2 mb-1">
-                                    <span className="px-2 py-0.5 rounded text-xs font-bold bg-orange-500/20 text-orange-300">
+                                    <span className="px-2 py-0.5 rounded-sm text-xs font-bold bg-white/20 text-white">
                                         LOWER
                                     </span>
                                 </div>
@@ -205,36 +217,38 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartWorkout, onSelectPlan }) =
                                     Posteriores de Perna
                                 </p>
                             </div>
-                            <div className={`w-14 h-14 rounded-full flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-white/20'
+                            <div className={`w-14 h-14 rounded-sm flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-white/20'
                                 }`}>
                                 <Play className={`w-7 h-7 ${currentSession ? 'text-gray-500' : 'text-white'}`} fill="currentColor" />
                             </div>
                         </div>
                     </button>
 
-                    {/* Cardio Button */}
+                    {/* Cardio Button - YELLOW accent */}
                     <button
                         onClick={() => onStartWorkout('cardio')}
                         disabled={!!currentSession}
-                        className={`relative overflow-hidden p-6 rounded-2xl transition-all duration-300 ${currentSession
+                        className={`relative overflow-hidden p-6 rounded-sm transition-all duration-250 hover-scale ${currentSession
                             ? 'bg-gray-800 cursor-not-allowed'
-                            : 'bg-gradient-to-r from-yellow-600/80 to-yellow-500/80 hover:from-yellow-600 hover:to-yellow-500 shadow-lg shadow-yellow-500/25 active:scale-[0.98]'
+                            : 'bg-accent-yellow hover:shadow-lg active:scale-95'
                             }`}
+                        aria-label="Iniciar treino Cardio: Corrida, Caminhada, Abdominal"
+                        aria-disabled={!!currentSession}
                     >
                         <div className="flex items-center justify-between">
                             <div className="text-left">
                                 <div className="flex items-center gap-2 mb-1">
-                                    <span className="px-2 py-0.5 rounded text-xs font-bold bg-yellow-500/20 text-yellow-300">
+                                    <span className="px-2 py-0.5 rounded-sm text-xs font-bold bg-black/20 text-black">
                                         CARDIO
                                     </span>
                                 </div>
-                                <p className={`text-lg font-bold ${currentSession ? 'text-gray-400' : 'text-white'}`}>
+                                <p className={`text-lg font-bold ${currentSession ? 'text-gray-400' : 'text-black'}`}>
                                     Corrida, Caminhada, Abdominal
                                 </p>
                             </div>
-                            <div className={`w-14 h-14 rounded-full flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-white/20'
+                            <div className={`w-14 h-14 rounded-sm flex items-center justify-center ${currentSession ? 'bg-gray-700' : 'bg-black/20'
                                 }`}>
-                                <Play className={`w-7 h-7 ${currentSession ? 'text-gray-500' : 'text-white'}`} fill="currentColor" />
+                                <Play className={`w-7 h-7 ${currentSession ? 'text-gray-500' : 'text-black'}`} fill="currentColor" />
                             </div>
                         </div>
                     </button>
@@ -245,30 +259,30 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartWorkout, onSelectPlan }) =
             <section className="space-y-3">
                 <h2 className="text-lg font-semibold text-white">Resumo Semanal</h2>
                 <div className="grid grid-cols-3 gap-3">
-                    <div className="p-4 bg-surface-dark rounded-xl text-center">
-                        <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-blue-500/20 flex items-center justify-center">
-                            <Calendar className="w-5 h-5 text-blue-400" />
+                    <div className="p-4 bg-surface-dark rounded-sm text-center hover-lift">
+                        <div className="w-10 h-10 mx-auto mb-2 rounded-sm bg-accent-blue/20 flex items-center justify-center">
+                            <Calendar className="w-5 h-5 text-accent-blue" />
                         </div>
                         <p className="text-2xl font-bold text-white">{weeklySummary.daysTrainedCount}</p>
-                        <p className="text-xs text-gray-400 mt-1">Dias</p>
+                        <p className="text-xs text-text-secondary mt-1">Dias</p>
                     </div>
-                    <div className="p-4 bg-surface-dark rounded-xl text-center">
-                        <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-orange-500/20 flex items-center justify-center">
-                            <Flame className="w-5 h-5 text-orange-400" />
+                    <div className="p-4 bg-surface-dark rounded-sm text-center hover-lift">
+                        <div className="w-10 h-10 mx-auto mb-2 rounded-sm bg-accent-orange/20 flex items-center justify-center">
+                            <Flame className="w-5 h-5 text-accent-orange" />
                         </div>
                         <p className="text-2xl font-bold text-white">{weeklySummary.totalSets}</p>
-                        <p className="text-xs text-gray-400 mt-1">Séries</p>
+                        <p className="text-xs text-text-secondary mt-1">Séries</p>
                     </div>
-                    <div className="p-4 bg-surface-dark rounded-xl text-center">
-                        <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-green-500/20 flex items-center justify-center">
-                            <TrendingUp className="w-5 h-5 text-green-400" />
+                    <div className="p-4 bg-surface-dark rounded-sm text-center hover-lift">
+                        <div className="w-10 h-10 mx-auto mb-2 rounded-sm bg-primary/20 flex items-center justify-center">
+                            <TrendingUp className="w-5 h-5 text-primary" />
                         </div>
                         <p className="text-2xl font-bold text-white">
                             {weeklySummary.totalVolume > 1000
                                 ? `${(weeklySummary.totalVolume / 1000).toFixed(1)}k`
                                 : weeklySummary.totalVolume}
                         </p>
-                        <p className="text-xs text-gray-400 mt-1">Volume (kg)</p>
+                        <p className="text-xs text-text-secondary mt-1">Volume (kg)</p>
                     </div>
                 </div>
             </section>
@@ -280,10 +294,10 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartWorkout, onSelectPlan }) =
                 </div>
 
                 {recentWorkouts.length === 0 ? (
-                    <div className="p-6 bg-surface-dark rounded-xl text-center">
-                        <Dumbbell className="w-12 h-12 text-gray-600 mx-auto mb-3" />
-                        <p className="text-gray-400">Nenhum treino registrado ainda</p>
-                        <p className="text-gray-500 text-sm mt-1">Comece seu primeiro treino!</p>
+                    <div className="p-8 bg-surface-dark rounded-sm text-center border border-white/5">
+                        <Dumbbell className="w-12 h-12 text-text-tertiary mx-auto mb-3" />
+                        <p className="text-text-secondary">Nenhum treino registrado ainda</p>
+                        <p className="text-text-tertiary text-sm mt-1">Comece seu primeiro treino!</p>
                     </div>
                 ) : (
                     <div className="space-y-2">
@@ -294,17 +308,17 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartWorkout, onSelectPlan }) =
                             return (
                                 <div
                                     key={workout.id}
-                                    className="flex items-center justify-between p-4 bg-surface-dark rounded-xl"
+                                    className="flex items-center justify-between p-4 bg-surface-dark rounded-sm hover-lift"
                                 >
                                     <div className="flex items-center gap-3">
-                                        <div className={`w-10 h-10 rounded-lg ${dayColor.bg} flex items-center justify-center`}>
+                                        <div className={`w-10 h-10 rounded-sm ${dayColor.bg} flex items-center justify-center`}>
                                             <span className={`text-xs font-bold ${dayColor.text}`}>
                                                 {DAY_NAMES[workout.dayType].slice(0, 2)}
                                             </span>
                                         </div>
                                         <div>
                                             <p className="text-white font-medium">{DAY_NAMES[workout.dayType]}</p>
-                                            <p className="text-gray-400 text-sm">
+                                            <p className="text-text-secondary text-sm">
                                                 {new Date(workout.date).toLocaleDateString('pt-BR', {
                                                     weekday: 'short',
                                                     day: 'numeric',
@@ -316,7 +330,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onStartWorkout, onSelectPlan }) =
                                     <div className="text-right">
                                         <p className="text-white font-medium">{totalSets} séries</p>
                                         {workout.duration && (
-                                            <p className="text-gray-400 text-sm">{workout.duration} min</p>
+                                            <p className="text-text-secondary text-sm">{workout.duration} min</p>
                                         )}
                                     </div>
                                 </div>

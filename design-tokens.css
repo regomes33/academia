@@ -1,0 +1,236 @@
+/**
+ * Design Tokens - Academia PPL System
+ * Following Frontend Specialist Guidelines
+ * Sharp geometry, spring physics, NO PURPLE
+ */
+
+:root {
+  /* ============================================
+     COLOR TOKENS
+     ============================================ */
+  
+  /* Primary - Neon Green (Energy, Progress) */
+  --color-primary: #13ec13;
+  --color-primary-light: #4dff4d;
+  --color-primary-dark: #0db80d;
+  --color-primary-glow: rgba(19, 236, 19, 0.5);
+  
+  /* Accent - Red (Urgency, Action) */
+  --color-accent-red: #ff4444;
+  --color-accent-red-light: #ff6b6b;
+  --color-accent-red-dark: #cc0000;
+  
+  /* Accent - Blue (Pull workouts) */
+  --color-accent-blue: #00a8ff;
+  --color-accent-blue-light: #33b8ff;
+  --color-accent-blue-dark: #0088cc;
+  
+  /* Accent - Yellow (Cardio) */
+  --color-accent-yellow: #ffd700;
+  --color-accent-yellow-light: #ffe44d;
+  --color-accent-yellow-dark: #ccac00;
+  
+  /* Accent - Orange (Lower body) */
+  --color-accent-orange: #ff8c00;
+  --color-accent-orange-light: #ffa533;
+  --color-accent-orange-dark: #cc7000;
+  
+  /* Backgrounds */
+  --color-bg-dark: #0a0a0a;
+  --color-bg-surface: #1a1a1a;
+  --color-bg-surface-elevated: #242424;
+  --color-bg-overlay: rgba(10, 10, 10, 0.95);
+  
+  /* Text */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+  --color-text-tertiary: #666666;
+  --color-text-disabled: #404040;
+  
+  /* Borders */
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+  --color-border-default: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.2);
+  --color-border-focus: var(--color-primary);
+  
+  /* Status colors */
+  --color-success: var(--color-primary);
+  --color-error: var(--color-accent-red);
+  --color-warning: var(--color-accent-yellow);
+  --color-info: var(--color-accent-blue);
+  
+  /* ============================================
+     TYPOGRAPHY SCALE (Golden Ratio: 1.618)
+     ============================================ */
+  
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 1.875rem;   /* 30px */
+  --font-size-4xl: 2.25rem;    /* 36px */
+  --font-size-5xl: 3rem;       /* 48px */
+  --font-size-6xl: 3.75rem;    /* 60px */
+  --font-size-7xl: 4.5rem;     /* 72px */
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  
+  /* Line Heights */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+  
+  /* ============================================
+     SPACING SYSTEM (8-point grid)
+     ============================================ */
+  
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+  --spacing-16: 4rem;     /* 64px */
+  --spacing-20: 5rem;     /* 80px */
+  --spacing-24: 6rem;     /* 96px */
+  
+  /* ============================================
+     BORDER RADIUS (Sharp geometry for energy)
+     ============================================ */
+  
+  --radius-none: 0;
+  --radius-sm: 0.125rem;  /* 2px - Maximum for sharp design */
+  --radius-md: 0.25rem;   /* 4px - Use sparingly */
+  --radius-lg: 0.5rem;    /* 8px - Only for special cases */
+  --radius-full: 9999px;  /* Circle/pill shapes */
+  
+  /* ============================================
+     ELEVATION (Shadows with glow effects)
+     ============================================ */
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  
+  /* Glow effects */
+  --glow-primary: 0 0 10px var(--color-primary-glow),
+                  0 0 20px var(--color-primary-glow),
+                  0 0 30px var(--color-primary-glow);
+  --glow-primary-sm: 0 0 5px var(--color-primary-glow),
+                     0 0 10px var(--color-primary-glow);
+  --glow-red: 0 0 10px rgba(255, 68, 68, 0.5);
+  --glow-blue: 0 0 10px rgba(0, 168, 255, 0.5);
+  
+  /* ============================================
+     MOTION TOKENS (Spring physics)
+     ============================================ */
+  
+  /* Durations */
+  --duration-instant: 50ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+  
+  /* Easing Functions (Spring physics) */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);      /* Bouncy spring */
+  --ease-spring-subtle: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Subtle spring */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);             /* Smooth deceleration */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);         /* Smooth both ends */
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Overshoot bounce */
+  
+  /* ============================================
+     Z-INDEX LAYERS
+     ============================================ */
+  
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-toast: 1060;
+  --z-tooltip: 1070;
+  
+  /* ============================================
+     LAYOUT CONSTRAINTS
+     ============================================ */
+  
+  --width-xs: 20rem;      /* 320px */
+  --width-sm: 24rem;      /* 384px */
+  --width-md: 28rem;      /* 448px */
+  --width-lg: 32rem;      /* 512px */
+  --width-xl: 36rem;      /* 576px */
+  --width-2xl: 42rem;     /* 672px */
+  --width-3xl: 48rem;     /* 768px */
+  --width-4xl: 56rem;     /* 896px */
+  --width-full: 100%;
+  
+  /* ============================================
+     TOUCH TARGETS (WCAG AA)
+     ============================================ */
+  
+  --touch-target-min: 44px;  /* Minimum touch target size */
+  
+  /* ============================================
+     TRANSITIONS (Common patterns)
+     ============================================ */
+  
+  --transition-colors: color var(--duration-normal) var(--ease-out),
+                       background-color var(--duration-normal) var(--ease-out),
+                       border-color var(--duration-normal) var(--ease-out);
+  
+  --transition-transform: transform var(--duration-normal) var(--ease-spring);
+  
+  --transition-opacity: opacity var(--duration-normal) var(--ease-out);
+  
+  --transition-all: all var(--duration-normal) var(--ease-out);
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT (Critical for accessibility)
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+    --ease-spring: cubic-bezier(0, 0, 1, 1);
+    --ease-spring-subtle: cubic-bezier(0, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 1, 1);
+    --ease-in-out: cubic-bezier(0, 0, 1, 1);
+    --ease-bounce: cubic-bezier(0, 0, 1, 1);
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

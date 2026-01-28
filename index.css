@@ -1,8 +1,39 @@
-/* Base styles for PPL Workout App */
+/**
+ * Base Styles - Academia PPL Workout App
+ * Enhanced with Design Tokens and Modern Animations
+ * Following Frontend Specialist Guidelines
+ */
 
-/* Ensure smooth scrolling */
+/* Import design tokens */
+@import url('./design-tokens.css');
+
+/* ============================================
+   GLOBAL RESETS & BASE STYLES
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-dark);
+  overscroll-behavior-y: contain;
+  min-height: 100vh;
 }
 
 /* Remove default button styles */
@@ -10,63 +41,464 @@ button {
   background: none;
   border: none;
   cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
 }
 
-/* Focus styles for accessibility */
+/* Remove input number spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ============================================
+   ACCESSIBILITY - FOCUS STYLES
+   ============================================ */
+
 button:focus-visible,
-input:focus-visible {
-  outline: 2px solid #13ec13;
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-border-focus);
   outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 /* Prevent text selection on interactive elements */
 button,
-[role="button"] {
+[role="button"],
+[role="tab"],
+[role="switch"] {
   user-select: none;
   -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Loading animation */
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+/* ============================================
+   ANIMATIONS (GPU-Accelerated)
+   ============================================ */
+
+/* Pulse - Loading state */
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
 }
 
+/* Pulse Primary - With glow effect */
+@keyframes pulsePrimary {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: var(--glow-primary-sm);
+  }
+
+  50% {
+    opacity: 0.8;
+    box-shadow: var(--glow-primary);
+  }
+}
+
+/* Slide In From Bottom */
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%) translateZ(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) translateZ(0);
+    opacity: 1;
+  }
+}
+
+/* Slide In From Right */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%) translateZ(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0) translateZ(0);
+    opacity: 1;
+  }
+}
+
+/* Slide In From Left */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%) translateZ(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0) translateZ(0);
+    opacity: 1;
+  }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scale In - Spring physics */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9) translateZ(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1) translateZ(0);
+    opacity: 1;
+  }
+}
+
+/* Bounce - Celebration */
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0) translateZ(0);
+  }
+
+  50% {
+    transform: translateY(-10px) translateZ(0);
+  }
+}
+
+/* Glow Pulse */
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    box-shadow: var(--glow-primary-sm);
+  }
+
+  50% {
+    box-shadow: var(--glow-primary);
+  }
+}
+
+/* Shake - Error state */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0) translateZ(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-4px) translateZ(0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(4px) translateZ(0);
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Animation classes */
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Slide animations */
-@keyframes slideInFromBottom {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideInFromRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.animate-pulse-primary {
+  animation: pulsePrimary 2s var(--ease-out) infinite;
 }
 
 .animate-slide-up {
-  animation: slideInFromBottom 0.3s ease-out forwards;
+  animation: slideInFromBottom var(--duration-normal) var(--ease-spring) forwards;
 }
 
 .animate-slide-right {
-  animation: slideInFromRight 0.3s ease-out forwards;
+  animation: slideInFromRight var(--duration-normal) var(--ease-spring) forwards;
+}
+
+.animate-slide-left {
+  animation: slideInFromLeft var(--duration-normal) var(--ease-spring) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--duration-normal) var(--ease-spring) forwards;
+}
+
+.animate-bounce {
+  animation: bounce 0.6s var(--ease-bounce);
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 2s var(--ease-out) infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s var(--ease-out);
+}
+
+/* Staggered animations (for children) */
+.stagger-children>* {
+  opacity: 0;
+  animation: fadeIn var(--duration-normal) var(--ease-out) forwards;
+}
+
+.stagger-children>*:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.stagger-children>*:nth-child(2) {
+  animation-delay: 50ms;
+}
+
+.stagger-children>*:nth-child(3) {
+  animation-delay: 100ms;
+}
+
+.stagger-children>*:nth-child(4) {
+  animation-delay: 150ms;
+}
+
+.stagger-children>*:nth-child(5) {
+  animation-delay: 200ms;
+}
+
+.stagger-children>*:nth-child(6) {
+  animation-delay: 250ms;
+}
+
+.stagger-children>*:nth-child(7) {
+  animation-delay: 300ms;
+}
+
+.stagger-children>*:nth-child(8) {
+  animation-delay: 350ms;
+}
+
+.stagger-children>*:nth-child(9) {
+  animation-delay: 400ms;
+}
+
+.stagger-children>*:nth-child(10) {
+  animation-delay: 450ms;
+}
+
+/* ============================================
+   MICRO-INTERACTIONS (Spring Physics)
+   ============================================ */
+
+/* Hover scale - Buttons */
+.hover-scale {
+  transition: var(--transition-transform);
+  will-change: transform;
+}
+
+.hover-scale:hover {
+  transform: scale(1.02) translateZ(0);
+}
+
+.hover-scale:active {
+  transform: scale(0.98) translateZ(0);
+}
+
+/* Hover lift - Cards */
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease-spring),
+    box-shadow var(--duration-normal) var(--ease-out);
+  will-change: transform, box-shadow;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Hover glow - Primary elements */
+.hover-glow-primary {
+  transition: box-shadow var(--duration-normal) var(--ease-out);
+  will-change: box-shadow;
+}
+
+.hover-glow-primary:hover {
+  box-shadow: var(--glow-primary-sm);
+}
+
+/* Interactive feedback */
+.interactive {
+  transition: var(--transition-colors), var(--transition-transform);
+  will-change: transform, background-color, border-color;
+}
+
+.interactive:hover {
+  transform: scale(1.01) translateZ(0);
+}
+
+.interactive:active {
+  transform: scale(0.99) translateZ(0);
+}
+
+/* ============================================
+   LOADING STATES
+   ============================================ */
+
+.skeleton {
+  background: linear-gradient(90deg,
+      var(--color-bg-surface) 25%,
+      var(--color-bg-surface-elevated) 50%,
+      var(--color-bg-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================
+   SAFE AREA FOR MOBILE DEVICES
+   ============================================ */
+
+.h-safe-area-inset-bottom {
+  height: env(safe-area-inset-bottom, 0);
+}
+
+.pb-safe-area-inset-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.mb-safe-area-inset-bottom {
+  margin-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* ============================================
+   BACKDROP BLUR SUPPORT
+   ============================================ */
+
+@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+  .backdrop-blur {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .backdrop-blur-lg {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  img {
+    page-break-inside: avoid;
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
 }

@@ -54,10 +54,10 @@ const History: React.FC = () => {
                                     return (
                                         <div
                                             key={workout.id}
-                                            className="flex items-center justify-between p-4 bg-surface-dark rounded-xl"
+                                            className="flex items-center justify-between p-4 bg-surface-dark rounded-sm"
                                         >
                                             <div className="flex items-center gap-3">
-                                                <div className={`w-12 h-12 rounded-xl ${dayColor.bg} flex flex-col items-center justify-center`}>
+                                                <div className={`w-12 h-12 rounded-sm ${dayColor.bg} flex flex-col items-center justify-center`}>
                                                     <span className={`text-lg font-bold ${dayColor.text}`}>
                                                         {new Date(workout.date).getDate()}
                                                     </span>
@@ -112,7 +112,7 @@ const History: React.FC = () => {
                         <button
                             key={exercise.id}
                             onClick={() => setSelectedExercise(exercise)}
-                            className="w-full flex items-center justify-between p-4 bg-surface-dark rounded-xl hover:bg-surface-dark/80 transition-colors"
+                            className="w-full flex items-center justify-between p-4 bg-surface-dark rounded-sm hover:bg-surface-dark/80 transition-colors"
                         >
                             <div className="flex items-center gap-3">
                                 <div className={`w-10 h-10 rounded-lg ${dayColor.bg} flex items-center justify-center`}>
@@ -171,7 +171,7 @@ const History: React.FC = () => {
 
                 {/* Progress Chart */}
                 {chartData.length > 0 && (
-                    <section className="p-4 bg-surface-dark rounded-xl">
+                    <section className="p-4 bg-surface-dark rounded-sm">
                         <h3 className="text-gray-400 text-sm font-medium mb-4 flex items-center gap-2">
                             <TrendingUp className="w-4 h-4" />
                             Progressão de Carga
@@ -206,7 +206,7 @@ const History: React.FC = () => {
                             return (
                                 <div
                                     key={index}
-                                    className="p-4 bg-surface-dark/50 rounded-xl"
+                                    className="p-4 bg-surface-dark/50 rounded-sm"
                                 >
                                     <div className="flex items-center justify-between mb-2">
                                         <p className="text-white font-medium">
@@ -250,9 +250,9 @@ const History: React.FC = () => {
                 <div className="flex gap-2 mb-6">
                     <button
                         onClick={() => setView('workouts')}
-                        className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-colors ${view === 'workouts'
-                                ? 'bg-primary text-background-dark'
-                                : 'bg-surface-dark text-gray-400 hover:text-white'
+                        className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-sm font-medium transition-colors ${view === 'workouts'
+                            ? 'bg-primary text-background-dark'
+                            : 'bg-surface-dark text-gray-400 hover:text-white'
                             }`}
                     >
                         <Calendar className="w-5 h-5" />
@@ -260,9 +260,9 @@ const History: React.FC = () => {
                     </button>
                     <button
                         onClick={() => setView('exercises')}
-                        className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-colors ${view === 'exercises'
-                                ? 'bg-primary text-background-dark'
-                                : 'bg-surface-dark text-gray-400 hover:text-white'
+                        className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-sm font-medium transition-colors ${view === 'exercises'
+                            ? 'bg-primary text-background-dark'
+                            : 'bg-surface-dark text-gray-400 hover:text-white'
                             }`}
                     >
                         <Dumbbell className="w-5 h-5" />

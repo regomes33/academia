@@ -18,6 +18,9 @@ export interface Plan {
 export type DayType = 'push' | 'pull' | 'legs' | 'upper' | 'lower' | 'cardio' | 'rest';
 export type MuscleGroup = 'chest' | 'shoulders' | 'triceps' | 'back' | 'biceps' | 'quads' | 'hamstrings' | 'glutes' | 'calves';
 
+// Exercise Input Types for different exercise categories
+export type ExerciseInputType = 'weight_reps' | 'distance_time' | 'reps_only' | 'time_only' | 'time_reps';
+
 // Exercise Types
 export interface Exercise {
   id: string;
@@ -25,6 +28,7 @@ export interface Exercise {
   category: DayType;
   muscleGroups: MuscleGroup[];
   description?: string;
+  inputType?: ExerciseInputType; // Default is 'weight_reps'
 }
 
 // Workout Logging Types
@@ -33,6 +37,9 @@ export interface SetLog {
   weight: number;
   reps: number;
   completed: boolean;
+  // Cardio-specific fields
+  distance?: number; // in km
+  time?: number; // in seconds
 }
 
 export interface ExerciseLog {

@@ -244,42 +244,48 @@ export const CARDIO_EXERCISES: Exercise[] = [
         name: 'Corrida',
         category: 'cardio',
         muscleGroups: [],
-        description: 'Exercício cardiovascular de alta intensidade'
+        description: 'Exercício cardiovascular de alta intensidade',
+        inputType: 'distance_time'
     },
     {
         id: 'caminhada',
         name: 'Caminhada',
         category: 'cardio',
         muscleGroups: [],
-        description: 'Exercício cardiovascular de baixa intensidade'
+        description: 'Exercício cardiovascular de baixa intensidade',
+        inputType: 'distance_time'
     },
     {
         id: 'abdominal-reto',
         name: 'Abdominal Reto',
         category: 'cardio',
         muscleGroups: [],
-        description: 'Exercício para região abdominal'
+        description: 'Exercício para região abdominal',
+        inputType: 'reps_only'
     },
     {
         id: 'abdominal-obliquo',
         name: 'Abdominal Oblíquo',
         category: 'cardio',
         muscleGroups: [],
-        description: 'Exercício para abdômen lateral'
+        description: 'Exercício para abdômen lateral',
+        inputType: 'reps_only'
     },
     {
         id: 'prancha',
         name: 'Prancha',
         category: 'cardio',
         muscleGroups: [],
-        description: 'Exercício isométrico para core'
+        description: 'Exercício isométrico para core',
+        inputType: 'time_reps'
     },
     {
         id: 'burpee',
         name: 'Burpee',
         category: 'cardio',
         muscleGroups: [],
-        description: 'Exercício explosivo de corpo inteiro'
+        description: 'Exercício explosivo de corpo inteiro',
+        inputType: 'reps_only'
     }
 ];
 
