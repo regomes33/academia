@@ -7,7 +7,7 @@ interface BottomNavProps {
 }
 
 const tabs = [
-    { id: 'dashboard', label: 'Home', icon: Home },
+    { id: 'home', label: 'Home', icon: Home },
     { id: 'history', label: 'Histórico', icon: History },
     { id: 'profile', label: 'Perfil', icon: User },
 ];
